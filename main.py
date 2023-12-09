@@ -64,6 +64,10 @@ def submit_action(num_disks, new_page):
         canvas = tk.Canvas(new_page, width=400, height=300)
         canvas.pack()
 
+        # # Adding rectangles (disks)
+        # initial_width = 100
+        # for i in range(num_disks):
+        #     width = initial_width - i * 15
 
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
