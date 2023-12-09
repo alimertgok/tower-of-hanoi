@@ -98,6 +98,7 @@ main.mainloop()
 # utkunun comment
 # alimert
 # utkunun branchteki ilk comment
+# asldkşjasşdlaskjdasşlkd
 
 
 
