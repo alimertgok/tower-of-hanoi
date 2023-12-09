@@ -8,3 +8,5 @@
 #
 # no_of_disks = int(input("How many disks? "))
 
+print("Utkudan mesaj, Deneme 1 2")
+
