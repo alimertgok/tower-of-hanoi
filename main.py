@@ -97,5 +97,7 @@ quit_button.pack(side=tk.RIGHT, padx=5)
 main.mainloop()
 # utkunun comment
 # alimert
+# utkunun branchteki ilk comment
+
 
 
