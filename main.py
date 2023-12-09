@@ -34,38 +34,51 @@ def start_action():
     frame.pack_forget()
 
     # Create a new page
-    new_page = tk.Frame(root, padx=20, pady=20)
+    new_page = tk.Frame(main, padx=20, pady=20)
     new_page.pack(padx=10, pady=10)
 
     # Label and entry for number of disks
     label = tk.Label(new_page, text="Enter the number of disks:")
     label.pack()
 
+    # entry widget = textbox that accepts a single line of user input
     entry = tk.Entry(new_page)
     entry.pack()
 
     # Button to submit the number of disks
-    submit_button = tk.Button(new_page, text="Submit", command=lambda: submit_action(entry.get()))
+    submit_button = tk.Button(new_page, text="Submit", command=lambda: submit_action(entry.get(), new_page))
     submit_button.pack()
 
-def submit_action(num_disks):
+def submit_action(num_disks, new_page):
     try:
         num_disks = int(num_disks)
         messagebox.showinfo("Message", f"You entered {num_disks} disks.")
+
+        # canvas = widget that is used to draw graphs, plots, images in a window
+
+        # Destroy widgets in the current page
+        for widget in new_page.winfo_children():
+            widget.destroy()
+
+        # Create a canvas
+        canvas = tk.Canvas(new_page, width=400, height=300)
+        canvas.pack()
+
+
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
-        root.destroy()
+        main.destroy()
 
 # Create the main window
-root = tk.Tk()
-root.title("Tower Of Hanoi Program")
+main = tk.Tk()
+main.title("Tower Of Hanoi Program")
 
 # Create and configure a frame
 # frame = a rectangular container to group and hold widgets
-frame = tk.Frame(root, padx=20, pady=20)
+frame = tk.Frame(main, padx=20, pady=20)
 frame.pack(padx=10, pady=10)
 
 # Create a "Start" button
@@ -77,6 +90,6 @@ quit_button = tk.Button(frame, text="Quit", command=quit_action)
 quit_button.pack(side=tk.RIGHT, padx=5)
 
 # Run the Tkinter event loop
-root.mainloop()
+main.mainloop()
 
 
