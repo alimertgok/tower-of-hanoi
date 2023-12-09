@@ -96,6 +96,8 @@ quit_button.pack(side=tk.RIGHT, padx=5)
 # Run the Tkinter event loop
 main.mainloop()
 # utkunun comment
+# alimert
 # utkunun branchteki ilk comment
+
 
 
