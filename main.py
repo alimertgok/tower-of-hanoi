@@ -27,8 +27,9 @@
 
 
 import tkinter as tk
+import turtle
 from tkinter import messagebox
-from turtle import Screen
+from turtle import Screen, Turtle as t
 
 import Tower
 
@@ -63,21 +64,26 @@ def submit_action(num_disks, new_page):
         for widget in new_page.winfo_children():
             widget.destroy()
 
-        # Create a canvas
-        # canvas = tk.Canvas(new_page, width=400, height=300)
-        # canvas.pack()
 
-        # # Adding rectangles (disks)
-        # initial_width = 100
-        # for i in range(num_disks):
-        #     width = initial_width - i * 15
+        # Create a canvas for turtle graphics
+        canvas = tk.Canvas(new_page, width=400, height=300)
+        canvas.pack()
 
-        # my_screen = Screen(new_page)
-        # my_screen.screensize(250, 200)
-        #
-        # towers = Tower.Tower()
-        # towers.draw_tower()
+        # Create a turtle screen using the tkinter canvas
+        screen = turtle.TurtleScreen(canvas)
 
+        # Create turtles for each tower
+        my_turtle = turtle.RawTurtle(screen)
+
+        # Create tower instances
+        tower0 = Tower.Tower(0, my_turtle)
+        tower1 = Tower.Tower(1, my_turtle)
+        tower2 = Tower.Tower(2, my_turtle)
+
+        # Draw the towers
+        tower0.draw_tower()
+        tower1.draw_tower()
+        tower2.draw_tower()
 
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")

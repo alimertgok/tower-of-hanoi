@@ -35,7 +35,7 @@ import turtle as t
 class Tower:
 
     def __init__(self, n, turtle):
-        self.turtle = t.Turtle()
+        self.turtle = turtle
         self.n = n
 
     def draw_tower(self):
@@ -48,23 +48,23 @@ class Tower:
         self.turtle.showturtle()
 
 
-my_screen = t.Screen()
-my_screen.screensize(250, 200)
-
-
-turtle1 = t.Turtle()
-turtle2 = t.Turtle()
-turtle3 = t.Turtle()
-
-tower0 = Tower(0, turtle1)
-tower0.draw_tower()
-
-tower1 = Tower(1, turtle2)
-tower1.draw_tower()
-
-tower2 = Tower(2, turtle3)
-tower2.draw_tower()
-
-t.hideturtle()
-
-t.mainloop()
+# my_screen = t.Screen()
+# my_screen.screensize(250, 200)
+#
+#
+# turtle1 = t.Turtle()
+# turtle2 = t.Turtle()
+# turtle3 = t.Turtle()
+#
+# tower0 = Tower(0, turtle1)
+# tower0.draw_tower()
+#
+# tower1 = Tower(1, turtle2)
+# tower1.draw_tower()
+#
+# tower2 = Tower(2, turtle3)
+# tower2.draw_tower()
+#
+# t.hideturtle()
+#
+# t.mainloop()
