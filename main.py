@@ -95,3 +95,4 @@ quit_button.pack(side=tk.RIGHT, padx=5)
 
 # Run the Tkinter event loop
 main.mainloop()
+print("Utku")
