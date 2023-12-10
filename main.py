@@ -28,6 +28,9 @@
 
 import tkinter as tk
 from tkinter import messagebox
+from turtle import Screen
+
+import Tower
 
 def start_action():
     # Hide the main page
@@ -61,13 +64,20 @@ def submit_action(num_disks, new_page):
             widget.destroy()
 
         # Create a canvas
-        canvas = tk.Canvas(new_page, width=400, height=300)
-        canvas.pack()
+        # canvas = tk.Canvas(new_page, width=400, height=300)
+        # canvas.pack()
 
-        # Adding rectangles (disks)
-        initial_width = 100
-        for i in range(num_disks):
-            width = initial_width - i * 15
+        # # Adding rectangles (disks)
+        # initial_width = 100
+        # for i in range(num_disks):
+        #     width = initial_width - i * 15
+
+        # my_screen = Screen(new_page)
+        # my_screen.screensize(250, 200)
+        #
+        # towers = Tower.Tower()
+        # towers.draw_tower()
+
 
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
