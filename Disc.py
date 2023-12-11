@@ -1,30 +1,32 @@
-import turtle
+from turtle import *
 
 
-class Disc:
-    def __init__(self, no_of_disc, x, y, width, height, turtle):
-        self.no_of_disc = no_of_disc
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
+class Disc(Turtle):
+    def __init__(self, n, turtle):
+        Turtle.__init__(self, shape="square", visible=False)
+        self.penup()
+        self.speed(10)
+        self.shapesize(1.5, n * 1.5, 2)
+        self.fillcolor(min(1.0, n / 6.0), 0, max(0, 1 - n / 6.0))
+        self.showturtle()
+        self.n = n
         self.turtle = turtle
 
+    def draw_disc(self, num_discs):
+        tower = []
+        for i in range(num_discs):
+            self.turtle = Disc(num_discs - i)
+            self.turtle.goto(-650, i * 30)  # Adjust the spacing as needed
+            tower.append(self.turtle)
 
-    def draw_disc(self, n):
-        turtle.penup()
-        turtle.goto(self.x - size * 5, self.y)
-        turtle.pendown()
-        turtle.forward(size * 10)
-        turtle.left(90)
-        turtle.forward(self.height)
-        turtle.left(90)
-        turtle.forward(size * 10)
-        turtle.left(90)
-        turtle.forward(self.height)
-        turtle.left(90)
+        return tower
 
-disc = Disc(5, 5, 10, 10, 10)
-disc.draw_disc(5)
+drawing_area = Screen()
+drawing_area.bgcolor('white')
+drawing_area.title("Demo")
 
-turtle.mainloop()
+drawing_area.setup(width=1920, height=1080)
+
+Disc.draw_disc(5)
+
+mainloop()

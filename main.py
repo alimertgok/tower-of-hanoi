@@ -9,7 +9,6 @@
 # # no_of_disks = int(input("How many disks? "))
 
 
-
 # from tkinter import *
 #
 # def start_action():
@@ -32,6 +31,8 @@ from tkinter import messagebox
 from turtle import Screen, Turtle as t
 
 import Tower
+import Disc
+
 
 def start_action():
     # Hide the main page
@@ -53,6 +54,7 @@ def start_action():
     submit_button = tk.Button(new_page, text="Submit", command=lambda: submit_action(entry.get(), new_page))
     submit_button.pack()
 
+
 def submit_action(num_disks, new_page):
     try:
         num_disks = int(num_disks)
@@ -63,7 +65,6 @@ def submit_action(num_disks, new_page):
         # Destroy widgets in the current page
         for widget in new_page.winfo_children():
             widget.destroy()
-
 
         # Create a canvas for turtle graphics
         canvas = tk.Canvas(new_page, width=1920, height=1080)
@@ -77,6 +78,8 @@ def submit_action(num_disks, new_page):
         my_turtle2 = turtle.RawTurtle(canvas)
         my_turtle3 = turtle.RawTurtle(canvas)
 
+        disc_turtle = turtle.RawTurtle(canvas)
+
         # Create tower instances
         tower0 = Tower.Tower(0, my_turtle1)
         tower1 = Tower.Tower(1, my_turtle2)
@@ -87,12 +90,18 @@ def submit_action(num_disks, new_page):
         tower1.draw_tower()
         tower2.draw_tower()
 
+        # Draw discs
+        disc = Disc.Disc(num_disks, disc_turtle)
+        disc.draw_disc(num_disks)
+
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
+
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
         main.destroy()
+
 
 # Create the main window
 main = tk.Tk()
