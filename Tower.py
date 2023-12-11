@@ -42,7 +42,7 @@ class Tower:
         self.turtle.penup()
         self.turtle.hideturtle()
         self.turtle.speed(100)
-        self.turtle.goto(-400 + (self.n * 400), 0)
+        self.turtle.goto(-650 + (self.n * 650), 0)
         self.turtle.shape("square")
         self.turtle.shapesize(20, 0.5)
         self.turtle.showturtle()

@@ -66,19 +66,21 @@ def submit_action(num_disks, new_page):
 
 
         # Create a canvas for turtle graphics
-        canvas = tk.Canvas(new_page, width=400, height=300)
+        canvas = tk.Canvas(new_page, width=1920, height=1080)
         canvas.pack()
 
-        # Create a turtle screen using the tkinter canvas
-        screen = turtle.TurtleScreen(canvas)
+        # # Create a turtle screen using the tkinter canvas
+        # screen = turtle.TurtleScreen(canvas)
 
         # Create turtles for each tower
-        my_turtle = turtle.RawTurtle(screen)
+        my_turtle1 = turtle.RawTurtle(canvas)
+        my_turtle2 = turtle.RawTurtle(canvas)
+        my_turtle3 = turtle.RawTurtle(canvas)
 
         # Create tower instances
-        tower0 = Tower.Tower(0, my_turtle)
-        tower1 = Tower.Tower(1, my_turtle)
-        tower2 = Tower.Tower(2, my_turtle)
+        tower0 = Tower.Tower(0, my_turtle1)
+        tower1 = Tower.Tower(1, my_turtle2)
+        tower2 = Tower.Tower(2, my_turtle3)
 
         # Draw the towers
         tower0.draw_tower()
