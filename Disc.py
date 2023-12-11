@@ -10,23 +10,20 @@ class Disc(Turtle):
         self.fillcolor(min(1.0, n / 6.0), 0, max(0, 1 - n / 6.0))
         self.showturtle()
         self.n = n
-        self.turtle = turtle
+        # self.turtle = turtle
 
-    def draw_disc(self, num_discs):
-        tower = []
-        for i in range(num_discs):
-            self.turtle = Disc(num_discs - i)
-            self.turtle.goto(-650, i * 30)  # Adjust the spacing as needed
-            tower.append(self.turtle)
+    def draw_disc(self):
+        self.showturtle()
 
-        return tower
 
-drawing_area = Screen()
-drawing_area.bgcolor('white')
-drawing_area.title("Demo")
 
-drawing_area.setup(width=1920, height=1080)
 
-Disc.draw_disc(5)
+# drawing_area = Screen()
+# drawing_area.bgcolor('white')
+# drawing_area.title("Demo")
+#
+# drawing_area.setup(width=1920, height=1080)
+#
+# Disc.draw_disc(5)
 
-mainloop()
+# mainloop()

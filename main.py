@@ -70,29 +70,25 @@ def submit_action(num_disks, new_page):
         canvas = tk.Canvas(new_page, width=1920, height=1080)
         canvas.pack()
 
-        # # Create a turtle screen using the tkinter canvas
-        # screen = turtle.TurtleScreen(canvas)
-
-        # Create turtles for each tower
-        my_turtle1 = turtle.RawTurtle(canvas)
-        my_turtle2 = turtle.RawTurtle(canvas)
-        my_turtle3 = turtle.RawTurtle(canvas)
-
-        disc_turtle = turtle.RawTurtle(canvas)
-
-        # Create tower instances
-        tower0 = Tower.Tower(0, my_turtle1)
-        tower1 = Tower.Tower(1, my_turtle2)
-        tower2 = Tower.Tower(2, my_turtle3)
-
-        # Draw the towers
-        tower0.draw_tower()
-        tower1.draw_tower()
-        tower2.draw_tower()
-
-        # Draw discs
-        disc = Disc.Disc(num_disks, disc_turtle)
-        disc.draw_disc(num_disks)
+        # # # Create a turtle screen using the tkinter canvas
+        # turtle_screen = turtle.TurtleScreen(canvas)
+        #
+        # # Create turtles for each tower
+        # my_turtle1 = turtle.RawTurtle(turtle_screen)
+        # my_turtle2 = turtle.RawTurtle(turtle_screen)
+        # my_turtle3 = turtle.RawTurtle(turtle_screen)
+        #
+        # # disc_turtle = turtle.RawTurtle(turtle_screen)
+        #
+        # # Create tower instances
+        # tower0 = Tower.Tower(0, my_turtle1)
+        # tower1 = Tower.Tower(1, my_turtle2)
+        # tower2 = Tower.Tower(2, my_turtle3)
+        #
+        # # Draw the towers
+        # tower0.draw_tower()
+        # tower1.draw_tower()
+        # tower2.draw_tower()
 
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
@@ -105,19 +101,20 @@ def quit_action():
 
 # Create the main window
 main = tk.Tk()
+main.geometry("1900x1080")
 main.title("Tower Of Hanoi Program")
 
 # Create and configure a frame
 # frame = a rectangular container to group and hold widgets
-frame = tk.Frame(main, padx=20, pady=20)
+frame = tk.Frame(main, padx=1, pady=1)
 frame.pack(padx=10, pady=10)
 
 # Create a "Start" button
-start_button = tk.Button(frame, text="Start", command=start_action)
+start_button = tk.Button(frame, text="Start", command=start_action, width=10, height=5)
 start_button.pack(side=tk.LEFT, padx=5)
 
 # Create a "Quit" button
-quit_button = tk.Button(frame, text="Quit", command=quit_action)
+quit_button = tk.Button(frame, text="Quit", command=quit_action, width=10, height=5)
 quit_button.pack(side=tk.RIGHT, padx=5)
 
 # Run the Tkinter event loop
