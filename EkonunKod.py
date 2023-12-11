@@ -4,7 +4,7 @@ class Disc(Turtle):
     def __init__(self, n):
         Turtle.__init__(self, shape="square", visible=False)
         self.pu()
-        self.shapesize(1.5, n * 1.5, 2)
+        self.shapesize(1.5, n * 1.5, 2)  # (vertical length, horizontal length, outline)
         self.fillcolor(min(1.0, n / 6.0), 0, max(0, 1 - n / 6.0))
         self.st()
 
@@ -22,7 +22,7 @@ class Tower(list):
         d.sety(150)
         return d
 
-def hanoi(n, from_, with_, to_, counter_label):
+def hanoi(n, from_, with_, to_, counter_label): # n -> number of Disc: int
     if n > 0:
         hanoi(n - 1, from_, to_, with_, counter_label)
         to_.push(from_.pop())
