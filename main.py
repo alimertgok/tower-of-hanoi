@@ -101,7 +101,7 @@ def quit_action():
 
 # Create the main window
 main = tk.Tk()
-main.geometry("1900x1080")
+main.geometry("1200x600")
 main.title("Tower Of Hanoi Program")
 
 # Create and configure a frame
