@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 
+
 # def draw_on_canvas(canvas, color):
 #     canvas.create_rectangle(20, 20, 80, 80, fill=color)
 #
@@ -24,12 +25,19 @@ from PIL import Image, ImageTk
 # # Start the Tkinter event loop
 # root.mainloop()
 
+
+# def draw_rectangle(canvas, disc_number):
+#     # TODO
+
 def start_action():
     try:
         disc_number = entry.getint(entry.get())
         print(disc_number)
+        # draw_rectangle(canvas1, disc_number)
+        # draw_rectangle(canvas2, disc_number)
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
+
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
@@ -43,7 +51,6 @@ root.title("Tower Of Hanoi")
 ico = Image.open('icon.png')
 photo = ImageTk.PhotoImage(ico)
 root.wm_iconphoto(False, photo)
-
 
 frame = tk.Frame(root, padx=1, pady=1)
 frame.pack(padx=10, pady=10)
