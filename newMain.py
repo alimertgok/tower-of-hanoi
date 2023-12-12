@@ -33,30 +33,29 @@ from Disc import Disc
 # def draw_rectangle(canvas, disc_number):
 #     # TODO
 
-global disc_number
-disc_number = 0
-
 def start_action():
+    discNumber = 0
     try:
-        disc_number = entry.getint(entry.get())
-        print(disc_number)
-        # draw_rectangle(canvas1, disc_number)
-        # draw_rectangle(canvas2, disc_number)
+        discNumber = entry.getint(entry.get())
+        print(discNumber)
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
+
+    # Play Begins
+    prepareDisks(discNumber)
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
         root.destroy()
 
-def prepareDisks():
+def prepareDisks(discNumber):
 
-    if disc_number == 0:
+    if discNumber == 0:
         return
 
-    for i in range(disc_number, 0, -1):
-        tower1.push(Disc(i))
-        tower4.push(Disc(i))
+    for i in range(discNumber, 0, -1):
+        tower1.push(Disc(i, canvas1))
+        tower4.push(Disc(i, canvas2))
 
 
 
