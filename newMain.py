@@ -78,4 +78,5 @@ canvas2 = tk.Canvas(frame, width=600, height=600, bg="white")
 canvas2.place(x=150, y=150)
 canvas2.pack(side=tk.RIGHT)
 
+
 root.mainloop()
