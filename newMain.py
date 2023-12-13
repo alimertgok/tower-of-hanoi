@@ -79,7 +79,6 @@ def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
 
 
 def iterativeHanoi(discNumber, src, aux, dest):
-
     numberOfMoves = (2 ** discNumber) - 1
 
     if discNumber % 2 == 1:
@@ -103,6 +102,7 @@ def iterativeHanoi(discNumber, src, aux, dest):
             if i % 3 == 0:
                 moveDisk(aux, dest)
 
+
 def moveDisk(src, dest):
     if not src and not dest:
         print("2 empty")
@@ -114,27 +114,15 @@ def moveDisk(src, dest):
     elif not src and dest:
         src.push(dest.pop())
 
-
-
-    if src[-1].getR() > dest[-1].getR():
-        src.push(dest.pop())
-    else:
-        dest.push(src.pop())
-
-
-
-
-
-
+    elif src and dest:
+        if src[-1].getR() > dest[-1].getR():
+            src.push(dest.pop())
+        else:
+            dest.push(src.pop())
 
 
 def startIterativeGame(discNumber):
     iterativeHanoi(discNumber, tower4, tower5, tower6)
-
-
-
-
-
 
 
 root = tk.Tk()
