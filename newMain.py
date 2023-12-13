@@ -25,7 +25,7 @@ from Disc import Disc
 # draw_on_canvas(canvas2, "blue")
 #
 # # Create and pack additional canvases as needed
-#
+# git
 # # Start the Tkinter event loop
 # root.mainloop()
 
@@ -44,15 +44,19 @@ def start_action():
     # Filling with discs
     prepareDisks(discNumber)
 
-    # Start game
+    # Start recursive game
     startRecursiveGame(discNumber)
+
+    # Start iterative game
+    startIterativeGame(discNumber)
+
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
         root.destroy()
 
-def prepareDisks(discNumber):
 
+def prepareDisks(discNumber):
     if discNumber == 0:
         return
 
@@ -60,16 +64,78 @@ def prepareDisks(discNumber):
         tower1.push(Disc(i, canvas1))
         tower4.push(Disc(i, canvas2))
 
-def startRecursiveGame(discNumber):
-    hanoi(discNumber, tower1, tower2, tower3)
 
-def hanoi(n, from_, with_, to_): # n -> number of Disc: int
+def startRecursiveGame(discNumber):
+    recursiveHanoi(discNumber, tower1, tower2, tower3)
+
+
+def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
     if n > 0:
-        hanoi(n - 1, from_, to_, with_)
+        recursiveHanoi(n - 1, from_, to_, with_)
         to_.push(from_.pop())
-        #counter_label[0] += 1  # Increment the counter when a movement occurs
-        #update_counter(counter_label[0])
-        hanoi(n - 1, with_, from_, to_)
+        # counter_label[0] += 1  # Increment the counter when a movement occurs
+        # update_counter(counter_label[0])
+        recursiveHanoi(n - 1, with_, from_, to_)
+
+
+def iterativeHanoi(discNumber, src, aux, dest):
+
+    numberOfMoves = (2 ** discNumber) - 1
+
+    if discNumber % 2 == 1:
+
+        for i in range(1, (numberOfMoves + 1)):
+
+            if i % 3 == 1:
+                moveDisk(src, dest)
+            if i % 3 == 2:
+                moveDisk(src, aux)
+            if i % 3 == 0:
+                moveDisk(dest, aux)
+
+    else:
+
+        for i in range(1, (numberOfMoves + 1)):
+            if i % 3 == 1:
+                moveDisk(src, aux)
+            if i % 3 == 2:
+                moveDisk(src, dest)
+            if i % 3 == 0:
+                moveDisk(aux, dest)
+
+def moveDisk(src, dest):
+    if not src and not dest:
+        print("2 empty")
+        return
+
+    elif not dest and src:
+        dest.push(src.pop())
+
+    elif not src and dest:
+        src.push(dest.pop())
+
+
+
+    if src[-1].getR() > dest[-1].getR():
+        src.push(dest.pop())
+    else:
+        dest.push(src.pop())
+
+
+
+
+
+
+
+
+def startIterativeGame(discNumber):
+    iterativeHanoi(discNumber, tower4, tower5, tower6)
+
+
+
+
+
+
 
 root = tk.Tk()
 root.geometry("1300x800")
@@ -109,7 +175,6 @@ canvas2.pack(side=tk.RIGHT)
 recursiveScreen = t.TurtleScreen(canvas1)
 iterativeScreen = t.TurtleScreen(canvas2)
 
-
 tower1 = Tower(-200, recursiveScreen)
 tower2 = Tower(0, recursiveScreen)
 tower3 = Tower(200, recursiveScreen)
@@ -117,7 +182,5 @@ tower3 = Tower(200, recursiveScreen)
 tower4 = Tower(-200, iterativeScreen)
 tower5 = Tower(0, iterativeScreen)
 tower6 = Tower(200, iterativeScreen)
-
-
 
 root.mainloop()
