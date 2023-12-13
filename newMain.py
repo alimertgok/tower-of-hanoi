@@ -41,8 +41,11 @@ def start_action():
     except ValueError:
         messagebox.showerror("Error", "Please enter a valid number.")
 
-    # Play Begins
+    # Filling with discs
     prepareDisks(discNumber)
+
+    # Start game
+    startRecursiveGame(discNumber)
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
@@ -57,8 +60,16 @@ def prepareDisks(discNumber):
         tower1.push(Disc(i, canvas1))
         tower4.push(Disc(i, canvas2))
 
+def startRecursiveGame(discNumber):
+    hanoi(discNumber, tower1, tower2, tower3)
 
-
+def hanoi(n, from_, with_, to_): # n -> number of Disc: int
+    if n > 0:
+        hanoi(n - 1, from_, to_, with_)
+        to_.push(from_.pop())
+        #counter_label[0] += 1  # Increment the counter when a movement occurs
+        #update_counter(counter_label[0])
+        hanoi(n - 1, with_, from_, to_)
 
 root = tk.Tk()
 root.geometry("1300x800")
@@ -97,7 +108,6 @@ canvas2.pack(side=tk.RIGHT)
 # Playgrounds for solving algorithms
 recursiveScreen = t.TurtleScreen(canvas1)
 iterativeScreen = t.TurtleScreen(canvas2)
-
 
 
 tower1 = Tower(-200, recursiveScreen)
