@@ -6,33 +6,6 @@ import turtle as t
 from Tower import Tower
 from Disc import Disc
 
-
-# def draw_on_canvas(canvas, color):
-#     canvas.create_rectangle(20, 20, 80, 80, fill=color)
-#
-# # Create the main Tkinter window
-# root = tk.Tk()
-# root.title("Multiple Canvases Example")
-#
-# # Create and pack the first canvas
-# canvas1 = tk.Canvas(root, width=100, height=100, bg="white")
-# canvas1.pack(side=tk.LEFT)
-# draw_on_canvas(canvas1, "red")
-#
-# # Create and pack the second canvas
-# canvas2 = tk.Canvas(root, width=100, height=100, bg="white")
-# canvas2.pack(side=tk.RIGHT)
-# draw_on_canvas(canvas2, "blue")
-#
-# # Create and pack additional canvases as needed
-# git
-# # Start the Tkinter event loop
-# root.mainloop()
-
-
-# def draw_rectangle(canvas, disc_number):
-#     # TODO
-
 def start_action():
     discNumber = 0
     try:
@@ -163,6 +136,26 @@ canvas2.pack(side=tk.RIGHT)
 recursiveScreen = t.TurtleScreen(canvas1)
 iterativeScreen = t.TurtleScreen(canvas2)
 
+# Titles for Algorithms
+recursiveText = t.RawTurtle(recursiveScreen)
+recursiveText.penup()
+recursiveText.hideturtle()
+recursiveText.speed(10)
+recursiveText.goto(-50, 280)
+recursiveText.pendown()
+recursiveText.pencolor("red")
+recursiveText.write("Recursive Solution", font=("Arial", 16, "bold"))
+
+iterativeText = t.RawTurtle(iterativeScreen)
+iterativeText.penup()
+iterativeText.hideturtle()
+iterativeText.speed(10)
+iterativeText.goto(-50, 280)
+iterativeText.pendown()
+iterativeText.pencolor("blue")
+iterativeText.write("Iterative Solution", font=("Arial", 16, "bold"))
+
+# Draw Towers
 tower1 = Tower(-200, recursiveScreen)
 tower2 = Tower(0, recursiveScreen)
 tower3 = Tower(200, recursiveScreen)
