@@ -78,66 +78,63 @@ def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
         recursiveHanoi(n - 1, with_, from_, to_)
 
 
+def iterativeHanoi(discNumber, src, aux, dest):
+
+    numberOfMoves = (2 ** discNumber) - 1
+
+    if discNumber % 2 == 1:
+
+        for i in range(1, (numberOfMoves + 1)):
+
+            if i % 3 == 1:
+                moveDisk(src, dest)
+            if i % 3 == 2:
+                moveDisk(src, aux)
+            if i % 3 == 0:
+                moveDisk(dest, aux)
+
+    else:
+
+        for i in range(1, (numberOfMoves + 1)):
+            if i % 3 == 1:
+                moveDisk(src, aux)
+            if i % 3 == 2:
+                moveDisk(src, dest)
+            if i % 3 == 0:
+                moveDisk(aux, dest)
+
+def moveDisk(src, dest):
+    if not src and not dest:
+        print("2 empty")
+        return
+
+    elif not dest and src:
+        dest.push(src.pop())
+
+    elif not src and dest:
+        src.push(dest.pop())
+
+
+
+    if src[-1].getR() > dest[-1].getR():
+        src.push(dest.pop())
+    else:
+        dest.push(src.pop())
+
+
+
+
+
+
+
+
 def startIterativeGame(discNumber):
     iterativeHanoi(discNumber, tower4, tower5, tower6)
 
 
-def iterativeHanoi(discNumber, from_, with_, to_):
-    for i in range(1, 2**discNumber):
-        if discNumber % 2 == 1:
 
-            if i % 3 == 1:
 
-                if from_:
-                    to_.push(from_.pop())
-                else:
-                    from_.push(to_.pop())
-            elif i % 3 == 2:
 
-                if from_:
-                    with_.push(from_.pop())
-                else:
-                    from_.push(with_.pop())
-            elif i % 3 == 0:
-
-                if to_:
-                    with_.push(to_.pop())
-                else:
-                    to_.push(with_.pop())
-
-        elif discNumber % 2 == 0:
-
-            if i % 3 == 1:
-
-                if from_:
-                    with_.push(from_.pop())
-                else:
-                    from_.push(with_.pop())
-            elif i % 3 == 2:
-
-                if from_:
-                    to_.push(from_.pop())
-                else:
-                    from_.push(to_.pop())
-            elif i % 3 == 0:
-
-                if with_:
-                    to_.push(with_.pop())
-                else:
-                    with_.push(to_.pop())
-
-    # i -> starts
-    # 1 -> to(2 ^ n) - 1
-    #
-    # if n is odd:
-    #     if i % 3 == 1 move (s < ->d)
-    #     if i % 3 == 2 move (s < ->a)
-    #     if i % 3 == 0 move (d < ->a)
-    #
-    # if n is even:
-    #     if i % 3 == 1 move (s < ->a)
-    #     if i % 3 == 2 move (s < ->d)
-    #     if i % 3 == 0 move (a < ->d)
 
 
 root = tk.Tk()
