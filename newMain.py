@@ -25,7 +25,7 @@ from Disc import Disc
 # draw_on_canvas(canvas2, "blue")
 #
 # # Create and pack additional canvases as needed
-#
+# git
 # # Start the Tkinter event loop
 # root.mainloop()
 
@@ -44,15 +44,19 @@ def start_action():
     # Filling with discs
     prepareDisks(discNumber)
 
-    # Start game
+    # Start recursive game
     startRecursiveGame(discNumber)
+
+    # Start iterative game
+    startIterativeGame(discNumber)
+
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
         root.destroy()
 
-def prepareDisks(discNumber):
 
+def prepareDisks(discNumber):
     if discNumber == 0:
         return
 
@@ -60,16 +64,81 @@ def prepareDisks(discNumber):
         tower1.push(Disc(i, canvas1))
         tower4.push(Disc(i, canvas2))
 
-def startRecursiveGame(discNumber):
-    hanoi(discNumber, tower1, tower2, tower3)
 
-def hanoi(n, from_, with_, to_): # n -> number of Disc: int
+def startRecursiveGame(discNumber):
+    recursiveHanoi(discNumber, tower1, tower2, tower3)
+
+
+def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
     if n > 0:
-        hanoi(n - 1, from_, to_, with_)
+        recursiveHanoi(n - 1, from_, to_, with_)
         to_.push(from_.pop())
-        #counter_label[0] += 1  # Increment the counter when a movement occurs
-        #update_counter(counter_label[0])
-        hanoi(n - 1, with_, from_, to_)
+        # counter_label[0] += 1  # Increment the counter when a movement occurs
+        # update_counter(counter_label[0])
+        recursiveHanoi(n - 1, with_, from_, to_)
+
+
+def startIterativeGame(discNumber):
+    iterativeHanoi(discNumber, tower4, tower5, tower6)
+
+
+def iterativeHanoi(discNumber, from_, with_, to_):
+    for i in range(1, 2**discNumber):
+        if discNumber % 2 == 1:
+
+            if i % 3 == 1:
+
+                if from_:
+                    to_.push(from_.pop())
+                else:
+                    from_.push(to_.pop())
+            elif i % 3 == 2:
+
+                if from_:
+                    with_.push(from_.pop())
+                else:
+                    from_.push(with_.pop())
+            elif i % 3 == 0:
+
+                if to_:
+                    with_.push(to_.pop())
+                else:
+                    to_.push(with_.pop())
+
+        elif discNumber % 2 == 0:
+
+            if i % 3 == 1:
+
+                if from_:
+                    with_.push(from_.pop())
+                else:
+                    from_.push(with_.pop())
+            elif i % 3 == 2:
+
+                if from_:
+                    to_.push(from_.pop())
+                else:
+                    from_.push(to_.pop())
+            elif i % 3 == 0:
+
+                if with_:
+                    to_.push(with_.pop())
+                else:
+                    with_.push(to_.pop())
+
+    # i -> starts
+    # 1 -> to(2 ^ n) - 1
+    #
+    # if n is odd:
+    #     if i % 3 == 1 move (s < ->d)
+    #     if i % 3 == 2 move (s < ->a)
+    #     if i % 3 == 0 move (d < ->a)
+    #
+    # if n is even:
+    #     if i % 3 == 1 move (s < ->a)
+    #     if i % 3 == 2 move (s < ->d)
+    #     if i % 3 == 0 move (a < ->d)
+
 
 root = tk.Tk()
 root.geometry("1300x800")
@@ -109,7 +178,6 @@ canvas2.pack(side=tk.RIGHT)
 recursiveScreen = t.TurtleScreen(canvas1)
 iterativeScreen = t.TurtleScreen(canvas2)
 
-
 tower1 = Tower(-200, recursiveScreen)
 tower2 = Tower(0, recursiveScreen)
 tower3 = Tower(200, recursiveScreen)
@@ -117,7 +185,5 @@ tower3 = Tower(200, recursiveScreen)
 tower4 = Tower(-200, iterativeScreen)
 tower5 = Tower(0, iterativeScreen)
 tower6 = Tower(200, iterativeScreen)
-
-
 
 root.mainloop()
