@@ -30,6 +30,15 @@ def quit_action():
 
 
 def prepareDisks(discNumber):
+
+    for disc in tower3:
+        disc.hideturtle()
+    tower3.clear()
+
+    for disc in tower6:
+        disc.hideturtle()
+    tower6.clear()
+
     if discNumber == 0:
         return
 
