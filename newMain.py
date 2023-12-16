@@ -2,11 +2,29 @@ import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import turtle as t
+import time
 
 from Tower import Tower
 from Disc import Disc
 
+def printRecursiveTime(elapsedTime):
+
+    recursiveTimeTurtle.penup()
+    recursiveTimeTurtle.goto(-290, -250)
+    recursiveTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} second", font=("Arial", 16, "bold"))
+
+
+def printIterativeTime(elapsedTime):
+    iterativeTimeTurtle.penup()
+    iterativeTimeTurtle.goto(-290, -250)
+    iterativeTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} second", font=("Arial", 16, "bold"))
+
+
 def start_action():
+
+    recursiveTimeTurtle.clear()
+    iterativeTimeTurtle.clear()
+
     discNumber = 0
     try:
         discNumber = entry.getint(entry.get())
@@ -17,12 +35,26 @@ def start_action():
     # Filling with discs
     prepareDisks(discNumber)
 
+    recursiveStartTime = time.time()
+
     # Start recursive game
     startRecursiveGame(discNumber)
+
+    recursiveElapsedTime = time.time() - recursiveStartTime
+
+    print(recursiveElapsedTime)
+
+    printRecursiveTime(recursiveElapsedTime)
+
+
+    iterativeStartTime = time.time()
 
     # Start iterative game
     startIterativeGame(discNumber)
 
+    iterativeElapsedTime = time.time() - iterativeStartTime
+    print(iterativeElapsedTime)
+    printIterativeTime(iterativeElapsedTime)
 
 def quit_action():
     if messagebox.askokcancel("Quit", "Do you really want to quit?"):
@@ -49,6 +81,9 @@ def prepareDisks(discNumber):
 
 def startRecursiveGame(discNumber):
     recursiveHanoi(discNumber, tower1, tower2, tower3)
+
+def startIterativeGame(discNumber):
+    iterativeHanoi(discNumber, tower4, tower5, tower6)
 
 
 def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
@@ -103,10 +138,6 @@ def moveDisk(src, dest):
             dest.push(src.pop())
 
 
-def startIterativeGame(discNumber):
-    iterativeHanoi(discNumber, tower4, tower5, tower6)
-
-
 root = tk.Tk()
 root.geometry("1300x800")
 root.title("Tower Of Hanoi")
@@ -155,6 +186,8 @@ recursiveText.pendown()
 recursiveText.pencolor("red")
 recursiveText.write("Recursive Solution", font=("Arial", 16, "bold"))
 
+recursiveTimeTurtle = t.RawTurtle(canvas=recursiveScreen, visible=False)
+
 iterativeText = t.RawTurtle(iterativeScreen)
 iterativeText.penup()
 iterativeText.hideturtle()
@@ -163,6 +196,8 @@ iterativeText.goto(-50, 280)
 iterativeText.pendown()
 iterativeText.pencolor("blue")
 iterativeText.write("Iterative Solution", font=("Arial", 16, "bold"))
+
+iterativeTimeTurtle = t.RawTurtle(canvas=iterativeScreen, visible=False)
 
 # Draw Towers
 tower1 = Tower(-200, recursiveScreen)
