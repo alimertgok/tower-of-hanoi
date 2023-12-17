@@ -9,13 +9,21 @@ from Disc import Disc
 
 def printRecursiveTime(elapsedTime):
 
-    recursiveTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} second", font=("Arial", 16, "bold"))
+    recursiveTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} seconds", font=("Arial", 16, "bold"))
 
 def printIterativeTime(elapsedTime):
 
-    iterativeTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} second", font=("Arial", 16, "bold"))
+    iterativeTimeTurtle.write(f"Time elapsed: {elapsedTime:.3f} seconds", font=("Arial", 16, "bold"))
 
 def start_action():
+
+    global iterativeMoveCounter
+    iterativeMoveCounter = 0
+    updateMoveCounter()
+
+    global recursiveMoveCounter
+    recursiveMoveCounter = 0
+    updateRecursiveCounter()
 
     recursiveTimeTurtle.clear()
     iterativeTimeTurtle.clear()
@@ -73,6 +81,11 @@ def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
     if n > 0:
         recursiveHanoi(n - 1, from_, to_, with_)
         to_.push(from_.pop())
+
+        global recursiveMoveCounter
+        recursiveMoveCounter = recursiveMoveCounter + 1
+        updateRecursiveCounter()
+
         recursiveHanoi(n - 1, with_, from_, to_)
 
 
@@ -103,7 +116,6 @@ def iterativeHanoi(discNumber, src, aux, dest):
 
 def moveDisk(src, dest):
     if not src and not dest:
-        print("2 empty")
         return
 
     elif not dest and src:
@@ -117,6 +129,22 @@ def moveDisk(src, dest):
             src.push(dest.pop())
         else:
             dest.push(src.pop())
+
+    global iterativeMoveCounter
+    iterativeMoveCounter = iterativeMoveCounter + 1
+    updateMoveCounter()
+
+def updateMoveCounter():
+    global iterativeMoveCounter
+
+    iterativeMovesTurtle.clear()
+    iterativeMovesTurtle.write(f"Moves: {iterativeMoveCounter}", font=("Arial", 16, "bold"))
+
+def updateRecursiveCounter():
+    global recursiveMoveCounter
+
+    recursiveMovesTurtle.clear()
+    recursiveMovesTurtle.write(f"Moves: {recursiveMoveCounter}", font=("Arial", 16, "bold"))
 
 
 root = tk.Tk()
@@ -167,6 +195,14 @@ recursiveText.pendown()
 recursiveText.pencolor("red")
 recursiveText.write("Recursive Solution", font=("Arial", 16, "bold"))
 
+recursiveMovesTurtle = t.RawTurtle(canvas=recursiveScreen, visible=False)
+recursiveMovesTurtle.speed(100)
+recursiveMovesTurtle.penup()
+recursiveMovesTurtle.goto(-290, -220)
+recursiveMoveCounter = 0
+recursiveMovesTurtle.write(f"Moves: {recursiveMoveCounter}", font=("Arial", 16, "bold"))
+
+
 recursiveTimeTurtle = t.RawTurtle(canvas=recursiveScreen, visible=False)
 recursiveTimeTurtle.speed(100)
 recursiveTimeTurtle.penup()
@@ -181,10 +217,18 @@ iterativeText.pendown()
 iterativeText.pencolor("blue")
 iterativeText.write("Iterative Solution", font=("Arial", 16, "bold"))
 
+iterativeMovesTurtle = t.RawTurtle(canvas=iterativeScreen, visible=False)
+iterativeMovesTurtle.speed(100)
+iterativeMovesTurtle.penup()
+iterativeMovesTurtle.goto(-290, -220)
+iterativeMoveCounter = 0
+iterativeMovesTurtle.write(f"Moves: {iterativeMoveCounter}", font=("Arial", 16, "bold"))
+
 iterativeTimeTurtle = t.RawTurtle(canvas=iterativeScreen, visible=False)
 iterativeTimeTurtle.speed(100)
 iterativeTimeTurtle.penup()
 iterativeTimeTurtle.goto(-290, -250)
+
 
 # Draw Towers
 tower1 = Tower(-200, recursiveScreen)
