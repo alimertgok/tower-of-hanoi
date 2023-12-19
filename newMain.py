@@ -19,7 +19,7 @@ def start_action():
 
     global iterativeMoveCounter
     iterativeMoveCounter = 0
-    updateMoveCounter()
+    updateIterativeCounter()
 
     global recursiveMoveCounter
     recursiveMoveCounter = 0
@@ -132,9 +132,9 @@ def moveDisk(src, dest):
 
     global iterativeMoveCounter
     iterativeMoveCounter = iterativeMoveCounter + 1
-    updateMoveCounter()
+    updateIterativeCounter()
 
-def updateMoveCounter():
+def updateIterativeCounter():
     global iterativeMoveCounter
 
     iterativeMovesTurtle.clear()
