@@ -76,7 +76,6 @@ def startRecursiveGame(discNumber):
 def startIterativeGame(discNumber):
     iterativeHanoi(discNumber, tower4, tower5, tower6)
 
-
 def recursiveHanoi(n, from_, with_, to_):  # n -> number of Disc: int
     if n > 0:
         recursiveHanoi(n - 1, from_, to_, with_)

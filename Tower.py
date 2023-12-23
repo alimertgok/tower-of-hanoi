@@ -14,7 +14,7 @@ class Tower(list):
 
     def push(self, disc):
         disc.setx(self.x)
-        disc.sety(-150 + 15 * len(self)) # it was -150 + 34 *
+        disc.sety(-150 + 15 * len(self))
         self.append(disc)
 
     def pop(self):

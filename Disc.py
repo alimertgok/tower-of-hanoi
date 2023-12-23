@@ -1,6 +1,5 @@
 import turtle as t
 
-
 class Disc(t.RawTurtle):
     def __init__(self, r, canvas):
         t.RawTurtle.__init__(self, canvas=canvas, shape="square", visible=True)
